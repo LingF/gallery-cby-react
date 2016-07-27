@@ -13,17 +13,38 @@ imageDatas = (function(aImageDatas) {
     aImageDatas[i] = oImg;
   }
   return aImageDatas;
-}(imageDatas))
+}(imageDatas));
+
+class ImgFigure extends React.Component {
+  render() {
+    return (
+      <figure className="img-figure">
+          <img src={this.props.data.imageURL} alt={this.props.data.title}/>
+          <figcaption>
+            <h2 className="img-title">{this.props.data.title}</h2>
+          </figcaption>
+      </figure>
+    );
+  }
+}
+
 
 class AppComponent extends React.Component {
   render() {
+    var aControllerUnits = [],
+      aFigures = [];
+
+    imageDatas.forEach(function(value) {
+      aFigures.push(<ImgFigure data={value} />);
+    })
+
     return (
       <section className="stage">
         <section className="img-sec">
-
+          {aFigures}
         </section>
         <nav className="controller-nav">
-
+          {aControllerUnits}
         </nav>
       </section>
     );
